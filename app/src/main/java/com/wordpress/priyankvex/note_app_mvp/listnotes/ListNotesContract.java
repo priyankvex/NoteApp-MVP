@@ -15,7 +15,6 @@ public interface ListNotesContract {
 
     interface View extends BaseView<Presenter> {
 
-        Context getApplicationContext();
         Context getActivityContext();
         void notifyItemInserted(int position);
         void notiffyDataSetChanged();

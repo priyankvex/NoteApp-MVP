@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.wordpress.priyankvex.note_app_mvp.R;
+import com.wordpress.priyankvex.note_app_mvp.data.DataSource;
 
 import java.util.List;
 
@@ -19,8 +20,6 @@ import java.util.List;
  */
 
 public class ListNotesActivity extends AppCompatActivity{
-
-    private ListNotesPresenter mListNotesPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +41,13 @@ public class ListNotesActivity extends AppCompatActivity{
                     listNotesFragment, R.id.contentFrame);
         }
 
-
+        // Create the Presenter
+        ListNotesContract.Presenter presenter = new ListNotesPresenter(listNotesFragment);
+        // Create the Model
+        DataSource model = new DataSource(presenter);
+        presenter.setModel(model);
+        // set the presenter for the view
+        listNotesFragment.setPresenter(presenter);
     }
 
     private void addFragmentToActivity(@NonNull FragmentManager fragmentManager,

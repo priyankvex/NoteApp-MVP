@@ -1,5 +1,7 @@
 package com.wordpress.priyankvex.note_app_mvp.data;
 
+import com.wordpress.priyankvex.note_app_mvp.listnotes.ListNotesContract;
+
 /**
  * Created by @priyankvex on 5/12/16.
  */
@@ -7,6 +9,11 @@ package com.wordpress.priyankvex.note_app_mvp.data;
 public class DataSource implements DataSourceContract{
 
 
+    ListNotesContract.Presenter mPresenter;
+
+    public DataSource(ListNotesContract.Presenter presenter){
+        this.mPresenter = presenter;
+    }
     @Override
     public void onDestroy(boolean isChangingConfiguration) {
 
