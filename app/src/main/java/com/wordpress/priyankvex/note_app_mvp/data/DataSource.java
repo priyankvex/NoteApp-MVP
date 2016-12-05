@@ -2,6 +2,8 @@ package com.wordpress.priyankvex.note_app_mvp.data;
 
 import com.wordpress.priyankvex.note_app_mvp.listnotes.ListNotesContract;
 
+import java.util.ArrayList;
+
 /**
  * Created by @priyankvex on 5/12/16.
  */
@@ -9,11 +11,13 @@ import com.wordpress.priyankvex.note_app_mvp.listnotes.ListNotesContract;
 public class DataSource implements DataSourceContract{
 
 
-    ListNotesContract.Presenter mPresenter;
+    private ListNotesContract.Presenter mPresenter;
+    private ArrayList<Note> mNotes;
 
     public DataSource(ListNotesContract.Presenter presenter){
         this.mPresenter = presenter;
     }
+
     @Override
     public void onDestroy(boolean isChangingConfiguration) {
 
@@ -21,26 +25,35 @@ public class DataSource implements DataSourceContract{
 
     @Override
     public int insertNote(Note note) {
-        return 0;
+        mNotes.add(note);
+        return 1;
     }
 
     @Override
     public boolean loadData() {
-        return false;
+        mNotes = new ArrayList<>();
+        for (int i = 0; i < 10; i++){
+            Note note = new Note();
+            note.setTitle("Title Note " + i);
+            note.setText("Lorem ipsum lorem ipsum.Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum");
+            mNotes.add(note);
+        }
+        return true;
     }
 
     @Override
     public Note getNote(int position) {
-        return null;
+        return mNotes.get(position);
     }
 
     @Override
     public boolean deleteNote(Note note, int adapterPos) {
-        return false;
+        mNotes.remove(adapterPos);
+        return true;
     }
 
     @Override
     public int getNotesCount() {
-        return 0;
+        return mNotes.size();
     }
 }

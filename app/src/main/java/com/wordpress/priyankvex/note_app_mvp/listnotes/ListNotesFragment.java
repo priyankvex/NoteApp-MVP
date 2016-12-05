@@ -43,9 +43,9 @@ public class ListNotesFragment extends Fragment implements ListNotesContract.Vie
         mAdapter = new ListNotesAdapter(mPresenter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivityContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        notesRecyclerView.setAdapter(mAdapter);
         notesRecyclerView.setLayoutManager(linearLayoutManager);
         notesRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        notesRecyclerView.setAdapter(mAdapter);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.wordpress.priyankvex.note_app_mvp.listnotes;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,7 @@ public class ListNotesPresenter implements ListNotesContract.Presenter, DataSour
 
     @Override
     public int getNotesCount() {
+        Log.d("test", "data size : " + mDataSourceContract.getNotesCount());
         return mDataSourceContract.getNotesCount();
     }
 
