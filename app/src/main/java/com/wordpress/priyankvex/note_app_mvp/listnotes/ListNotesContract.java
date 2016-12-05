@@ -1,0 +1,8 @@
+package com.wordpress.priyankvex.note_app_mvp.listnotes;
+
+/**
+ * Created by @priyankvex on 4/12/16.
+ */
+
+public interface ListNotesContract {
+}
