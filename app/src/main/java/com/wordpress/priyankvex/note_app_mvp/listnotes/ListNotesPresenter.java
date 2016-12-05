@@ -1,9 +1,13 @@
 package com.wordpress.priyankvex.note_app_mvp.listnotes;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.wordpress.priyankvex.note_app_mvp.R;
 import com.wordpress.priyankvex.note_app_mvp.data.DataSourceContract;
+import com.wordpress.priyankvex.note_app_mvp.data.Note;
 
 import java.lang.ref.WeakReference;
 
@@ -30,7 +34,7 @@ public class ListNotesPresenter implements ListNotesContract.Presenter, DataSour
 
     @Override
     public Context getApplicationContext() {
-        return mListNotesView.get().getApplicationContext();
+        return mListNotesView.get().getActivityContext().getApplicationContext();
     }
 
     @Override
@@ -55,12 +59,19 @@ public class ListNotesPresenter implements ListNotesContract.Presenter, DataSour
 
     @Override
     public ListNotesAdapter.ViewHolder createViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        ListNotesAdapter.ViewHolder viewHolder;
+        View itemRow = LayoutInflater.from(parent.getContext()).inflate(R.layout.notes_list_custom_item,
+                parent, false);
+        viewHolder = new ListNotesAdapter.ViewHolder(itemRow);
+        return viewHolder;
     }
 
     @Override
     public void bindViewHolder(ListNotesAdapter.ViewHolder holder, int position) {
 
+        final Note note = mDataSourceContract.getNote(position);
+        holder.titleTextView.setText(note.getTitle());
+        holder.bodyTextView.setText(note.getText());
     }
 
     @Override
@@ -73,5 +84,6 @@ public class ListNotesPresenter implements ListNotesContract.Presenter, DataSour
         // can be done in background task
         // not needed in this demo app
         mDataSourceContract.loadData();
+        mListNotesView.get().notiffyDataSetChanged();
     }
 }

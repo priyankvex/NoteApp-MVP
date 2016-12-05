@@ -13,14 +13,18 @@ import com.wordpress.priyankvex.note_app_mvp.R;
 
 class ListNotesAdapter extends RecyclerView.Adapter<ListNotesAdapter.ViewHolder> {
 
+    private ListNotesContract.Presenter mPresenter;
+
+    ListNotesAdapter(ListNotesContract.Presenter presenter){
+        this.mPresenter = presenter;
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView titleTextView;
         TextView bodyTextView;
 
-        public ViewHolder(View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
+        ViewHolder(View itemView) {
             super(itemView);
             titleTextView = (TextView) itemView.findViewById(R.id.title_textview);
             bodyTextView = (TextView) itemView.findViewById(R.id.body_textview);
@@ -29,17 +33,17 @@ class ListNotesAdapter extends RecyclerView.Adapter<ListNotesAdapter.ViewHolder>
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        return mPresenter.createViewHolder(parent, viewType);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        mPresenter.bindViewHolder(holder, position);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mPresenter.getNotesCount();
     }
 
 }

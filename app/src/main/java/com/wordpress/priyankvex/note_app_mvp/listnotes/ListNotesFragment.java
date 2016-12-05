@@ -40,7 +40,7 @@ public class ListNotesFragment extends Fragment implements ListNotesContract.Vie
 
     private void setUpViews(View rootView){
         RecyclerView notesRecyclerView = (RecyclerView) rootView.findViewById(R.id.notes_rv);
-        mAdapter = new ListNotesAdapter();
+        mAdapter = new ListNotesAdapter(mPresenter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivityContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         notesRecyclerView.setAdapter(mAdapter);
