@@ -20,6 +20,8 @@ import java.util.List;
 
 public class ListNotesActivity extends AppCompatActivity{
 
+    private ListNotesPresenter mListNotesPresenter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,8 @@ public class ListNotesActivity extends AppCompatActivity{
             addFragmentToActivity(getSupportFragmentManager(),
                     listNotesFragment, R.id.contentFrame);
         }
+
+
     }
 
     private void addFragmentToActivity(@NonNull FragmentManager fragmentManager,

@@ -44,7 +44,22 @@ public class ListNotesFragment extends Fragment implements ListNotesContract.Vie
     }
 
     @Override
+    public Context getActivityContext() {
+        return null;
+    }
+
+    @Override
     public void notifyItemInserted(int position) {
+
+    }
+
+    @Override
+    public void notiffyDataSetChanged() {
+
+    }
+
+    @Override
+    public void notifyItemRemoved(int position) {
 
     }
 
