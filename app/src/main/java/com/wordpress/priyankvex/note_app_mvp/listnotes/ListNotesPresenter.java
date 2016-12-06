@@ -86,6 +86,6 @@ public class ListNotesPresenter implements ListNotesContract.Presenter, DataSour
         // can be done in background task
         // not needed in this demo app
         mDataSourceContract.loadData();
-        mListNotesView.get().notiffyDataSetChanged();
+        mListNotesView.get().notifyDataSetChanged();
     }
 }

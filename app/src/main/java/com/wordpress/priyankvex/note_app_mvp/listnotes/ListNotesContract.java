@@ -17,7 +17,7 @@ public interface ListNotesContract {
 
         Context getActivityContext();
         void notifyItemInserted(int position);
-        void notiffyDataSetChanged();
+        void notifyDataSetChanged();
         void notifyItemRemoved(int position);
     }
 

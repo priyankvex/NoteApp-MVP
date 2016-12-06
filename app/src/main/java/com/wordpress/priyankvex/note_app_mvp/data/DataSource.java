@@ -1,5 +1,6 @@
 package com.wordpress.priyankvex.note_app_mvp.data;
 
+import com.wordpress.priyankvex.note_app_mvp.addnote.AddNoteContract;
 import com.wordpress.priyankvex.note_app_mvp.listnotes.ListNotesContract;
 
 import java.util.ArrayList;
@@ -8,15 +9,16 @@ import java.util.ArrayList;
  * Created by @priyankvex on 5/12/16.
  */
 
-public class DataSource implements DataSourceContract{
+public class DataSource<T> implements DataSourceContract{
 
 
-    private ListNotesContract.Presenter mPresenter;
+    private T mPresenter;
     private ArrayList<Note> mNotes;
 
-    public DataSource(ListNotesContract.Presenter presenter){
+    public DataSource(T presenter){
         this.mPresenter = presenter;
     }
+
 
     @Override
     public void onDestroy(boolean isChangingConfiguration) {
@@ -55,5 +57,10 @@ public class DataSource implements DataSourceContract{
     @Override
     public int getNotesCount() {
         return mNotes.size();
+    }
+
+    @Override
+    public boolean saveNewNote(Note note) {
+        return false;
     }
 }

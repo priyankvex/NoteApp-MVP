@@ -1,6 +1,5 @@
-package com.wordpress.priyankvex.note_app_mvp.listnotes;
+package com.wordpress.priyankvex.note_app_mvp.addnote;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,54 +9,45 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import com.wordpress.priyankvex.note_app_mvp.R;
-import com.wordpress.priyankvex.note_app_mvp.addnote.AddNoteActivity;
 import com.wordpress.priyankvex.note_app_mvp.data.DataSource;
 
 /**
- * Created by @priyankvex on 4/12/16.
+ * Created by @priyankvex on 6/12/16.
  */
 
-public class ListNotesActivity extends AppCompatActivity{
+public class AddNoteActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.list_notes_activity);
-
+        setContentView(R.layout.add_note_activity);
         // Set up the toolbar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Notes App");
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        ListNotesFragment listNotesFragment = (ListNotesFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        AddNoteFragment addNoteFragment = (AddNoteFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
 
-        if (listNotesFragment == null){
+        if (addNoteFragment== null){
 
-            listNotesFragment = ListNotesFragment.newInstance();
+            addNoteFragment = AddNoteFragment.newInstance();
 
             addFragmentToActivity(getSupportFragmentManager(),
-                    listNotesFragment, R.id.contentFrame);
+                    addNoteFragment, R.id.contentFrame);
         }
 
         // Create the Presenter
-        ListNotesContract.Presenter presenter = new ListNotesPresenter(listNotesFragment);
+        AddNotePresenter presenter = new AddNotePresenter(addNoteFragment);
         // Create the Model
-        DataSource<ListNotesContract.Presenter> model = new DataSource<>(presenter);
+        DataSource<AddNotePresenter> model = new DataSource<>(presenter);
         presenter.setModel(model);
         // set the presenter for the view
-        listNotesFragment.setPresenter(presenter);
+        addNoteFragment.setPresenter(presenter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.new_note_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(ListNotesActivity.this, AddNoteActivity.class);
-                startActivity(i);
-            }
-        });
     }
 
     private void addFragmentToActivity(@NonNull FragmentManager fragmentManager,

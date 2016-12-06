@@ -3,6 +3,7 @@ package com.wordpress.priyankvex.note_app_mvp.listnotes;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -65,7 +66,7 @@ public class ListNotesFragment extends Fragment implements ListNotesContract.Vie
     }
 
     @Override
-    public void notiffyDataSetChanged() {
+    public void notifyDataSetChanged() {
         mAdapter.notifyDataSetChanged();
     }
 

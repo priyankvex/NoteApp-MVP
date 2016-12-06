@@ -14,11 +14,17 @@ public interface DataSourceContract {
     Note getNote(int position);
     boolean deleteNote(Note note, int adapterPos);
     int getNotesCount();
+    boolean saveNewNote(Note note);
 
-    public interface LoadNotesCallbacks {
+    interface LoadNotesCallbacks {
 
         Context getApplicationContext();
         Context getActivityContext();
+    }
+
+    interface AddNoteCallbacks {
+
+        void onNoteAdded();
     }
 
 }
