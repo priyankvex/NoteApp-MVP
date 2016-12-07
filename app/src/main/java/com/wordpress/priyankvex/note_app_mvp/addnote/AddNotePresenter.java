@@ -12,7 +12,7 @@ import java.lang.ref.WeakReference;
  * Created by @priyankvex on 6/12/16.
  */
 
-public class AddNotePresenter implements AddNoteContract.Presenter, DataSourceContract.AddNoteCallbacks{
+public class AddNotePresenter implements AddNoteContract.Presenter{
 
     // hold a weak reference to the view
     // because activity can be destroyed anytime
@@ -46,7 +46,13 @@ public class AddNotePresenter implements AddNoteContract.Presenter, DataSourceCo
         Note note = new Note();
         note.setText(bodyText);
         note.setTitle(titleText);
-        mModel.saveNewNote(note);
+        boolean status = mModel.saveNewNote(note);
+        if (status){
+            // Note saved successfully
+            mView.get().showToast(Toast.makeText(mView.get().getActivityContext(),
+                    "Note Added", Toast.LENGTH_SHORT));
+            mView.get().finishView();
+        }
     }
 
     @Override
@@ -59,10 +65,4 @@ public class AddNotePresenter implements AddNoteContract.Presenter, DataSourceCo
         onNewNoteClick();
     }
 
-    @Override
-    public void onNoteAdded() {
-        mView.get().showToast(Toast.makeText(mView.get().getActivityContext(),
-                "Note Added", Toast.LENGTH_SHORT));
-        mView.get().finishView();
-    }
 }

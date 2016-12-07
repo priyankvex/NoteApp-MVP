@@ -16,7 +16,7 @@ import java.lang.ref.WeakReference;
  * Created by @priyankvex on 4/12/16.
  */
 
-public class ListNotesPresenter implements ListNotesContract.Presenter, DataSourceContract.LoadNotesCallbacks{
+public class ListNotesPresenter implements ListNotesContract.Presenter{
 
 
     // hold a weak reference to the view
@@ -31,16 +31,6 @@ public class ListNotesPresenter implements ListNotesContract.Presenter, DataSour
      */
     public ListNotesPresenter(ListNotesContract.View view){
         this.mListNotesView = new WeakReference<>(view);
-    }
-
-    @Override
-    public Context getApplicationContext() {
-        return mListNotesView.get().getActivityContext().getApplicationContext();
-    }
-
-    @Override
-    public Context getActivityContext() {
-        return mListNotesView.get().getActivityContext();
     }
 
     @Override

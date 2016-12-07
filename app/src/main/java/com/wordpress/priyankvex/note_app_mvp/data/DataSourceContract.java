@@ -1,7 +1,5 @@
 package com.wordpress.priyankvex.note_app_mvp.data;
 
-import android.content.Context;
-
 /**
  * Created by @priyankvex on 5/12/16.
  */
@@ -15,16 +13,5 @@ public interface DataSourceContract {
     boolean deleteNote(Note note, int adapterPos);
     int getNotesCount();
     boolean saveNewNote(Note note);
-
-    interface LoadNotesCallbacks {
-
-        Context getApplicationContext();
-        Context getActivityContext();
-    }
-
-    interface AddNoteCallbacks {
-
-        void onNoteAdded();
-    }
 
 }

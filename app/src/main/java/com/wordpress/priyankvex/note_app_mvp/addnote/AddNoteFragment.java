@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -35,7 +38,22 @@ public class AddNoteFragment extends Fragment implements AddNoteContract.View{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.add_note_fragment, container, false);
         setUpViews(rootView);
+        setHasOptionsMenu(true);
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_add_note, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_add_note){
+            mPresenter.saveNewNote(titleEditText, bodyEditText);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setUpViews(View rootView){
@@ -51,12 +69,7 @@ public class AddNoteFragment extends Fragment implements AddNoteContract.View{
 
     @Override
     public void showToast(Toast toast) {
-
-    }
-
-    @Override
-    public void onNoteAdded() {
-
+        toast.show();
     }
 
     @Override

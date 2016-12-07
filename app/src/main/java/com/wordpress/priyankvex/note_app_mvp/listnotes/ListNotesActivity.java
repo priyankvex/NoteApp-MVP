@@ -45,7 +45,7 @@ public class ListNotesActivity extends AppCompatActivity{
         // Create the Presenter
         ListNotesContract.Presenter presenter = new ListNotesPresenter(listNotesFragment);
         // Create the Model
-        DataSource<ListNotesContract.Presenter> model = new DataSource<>(presenter);
+        DataSource model = new DataSource();
         presenter.setModel(model);
         // set the presenter for the view
         listNotesFragment.setPresenter(presenter);

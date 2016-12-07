@@ -9,16 +9,9 @@ import java.util.ArrayList;
  * Created by @priyankvex on 5/12/16.
  */
 
-public class DataSource<T> implements DataSourceContract{
+public class DataSource implements DataSourceContract{
 
-
-    private T mPresenter;
     private ArrayList<Note> mNotes;
-
-    public DataSource(T presenter){
-        this.mPresenter = presenter;
-    }
-
 
     @Override
     public void onDestroy(boolean isChangingConfiguration) {
@@ -61,6 +54,7 @@ public class DataSource<T> implements DataSourceContract{
 
     @Override
     public boolean saveNewNote(Note note) {
-        return false;
+        note.save();
+        return true;
     }
 }

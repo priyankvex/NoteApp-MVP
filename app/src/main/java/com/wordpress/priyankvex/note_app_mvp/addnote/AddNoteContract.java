@@ -17,7 +17,6 @@ public interface AddNoteContract {
     interface View extends BaseView<Presenter>{
 
         void showToast(Toast toast);
-        void onNoteAdded();
         Context getActivityContext();
         void finishView();
     }

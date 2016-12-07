@@ -43,7 +43,7 @@ public class AddNoteActivity extends AppCompatActivity{
         // Create the Presenter
         AddNotePresenter presenter = new AddNotePresenter(addNoteFragment);
         // Create the Model
-        DataSource<AddNotePresenter> model = new DataSource<>(presenter);
+        DataSource model = new DataSource();
         presenter.setModel(model);
         // set the presenter for the view
         addNoteFragment.setPresenter(presenter);
