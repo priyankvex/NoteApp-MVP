@@ -7,7 +7,6 @@ package com.wordpress.priyankvex.note_app_mvp.data;
 public interface DataSourceContract {
 
     void onDestroy(boolean isChangingConfiguration);
-    int insertNote(Note note);
     boolean loadData();
     Note getNote(int position);
     boolean deleteNote(Note note, int adapterPos);

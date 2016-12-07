@@ -1,9 +1,6 @@
 package com.wordpress.priyankvex.note_app_mvp.data;
 
-import com.wordpress.priyankvex.note_app_mvp.addnote.AddNoteContract;
-import com.wordpress.priyankvex.note_app_mvp.listnotes.ListNotesContract;
-
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by @priyankvex on 5/12/16.
@@ -11,7 +8,7 @@ import java.util.ArrayList;
 
 public class DataSource implements DataSourceContract{
 
-    private ArrayList<Note> mNotes;
+    private List<Note> mNotes;
 
     @Override
     public void onDestroy(boolean isChangingConfiguration) {
@@ -19,20 +16,9 @@ public class DataSource implements DataSourceContract{
     }
 
     @Override
-    public int insertNote(Note note) {
-        mNotes.add(note);
-        return 1;
-    }
-
-    @Override
     public boolean loadData() {
-        mNotes = new ArrayList<>();
-        for (int i = 0; i < 10; i++){
-            Note note = new Note();
-            note.setTitle("Title Note " + i);
-            note.setText("Lorem ipsum lorem ipsum.Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum");
-            mNotes.add(note);
-        }
+        String query = "SELECT * FROM note ORDER BY last_modified DESC";
+        mNotes = Note.findWithQuery(Note.class, query);
         return true;
     }
 
