@@ -28,8 +28,8 @@ public class DataSource implements DataSourceContract{
     }
 
     @Override
-    public boolean deleteNote(Note note, int adapterPos) {
-        mNotes.remove(adapterPos);
+    public boolean deleteNote(Note note) {
+        note.delete();
         return true;
     }
 

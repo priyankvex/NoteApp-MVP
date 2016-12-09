@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.wordpress.priyankvex.note_app_mvp.R;
 
@@ -17,6 +18,10 @@ import com.wordpress.priyankvex.note_app_mvp.R;
  */
 
 public class ViewNoteFragment extends Fragment implements ViewNoteContract.View{
+
+    private ViewNoteContract.Presenter mPresenter;
+    private TextView titleTextView;
+    private TextView bodyTextView;
 
     public static ViewNoteFragment newInstance() {
         return new ViewNoteFragment();
@@ -31,6 +36,7 @@ public class ViewNoteFragment extends Fragment implements ViewNoteContract.View{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.view_note_fragment, container, false);
         setHasOptionsMenu(true);
+        setUpViews(rootView);
         return rootView;
     }
 
@@ -45,12 +51,29 @@ public class ViewNoteFragment extends Fragment implements ViewNoteContract.View{
         int id = item.getItemId();
         if (id == R.id.action_delete_note){
             // ask the presenter to delete the note
+            mPresenter.deleteNote();
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void setPresenter(ViewNoteContract.Presenter presenter) {
+        mPresenter = presenter;
+    }
 
+    @Override
+    public void noteDeleted() {
+        getActivity().finish();
+    }
+
+    @Override
+    public int getNoteId() {
+        return 0;
+    }
+
+    private void setUpViews(View rootView){
+
+        titleTextView = (TextView) rootView.findViewById(R.id.text_view_title);
+        bodyTextView = (TextView) rootView.findViewById(R.id.text_view_body);
     }
 }

@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.wordpress.priyankvex.note_app_mvp.R;
+import com.wordpress.priyankvex.note_app_mvp.addnote.AddNotePresenter;
+import com.wordpress.priyankvex.note_app_mvp.data.DataSource;
 
 /**
  * Created by @priyankvex on 8/12/16.
@@ -36,6 +38,14 @@ public class ViewNoteActivity extends AppCompatActivity{
             addFragmentToActivity(getSupportFragmentManager(),
                     viewNoteFragment, R.id.contentFrame);
         }
+
+        // Create the Presenter
+        ViewNotePresenter presenter = new ViewNotePresenter(viewNoteFragment);
+        // Create the Model
+        DataSource model = new DataSource();
+        presenter.setModel(model);
+        // set the presenter for the view
+        viewNoteFragment.setPresenter(presenter);
     }
 
     private void addFragmentToActivity(@NonNull FragmentManager fragmentManager,
