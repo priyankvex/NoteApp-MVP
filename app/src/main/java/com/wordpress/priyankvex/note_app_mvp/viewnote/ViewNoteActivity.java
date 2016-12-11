@@ -39,8 +39,11 @@ public class ViewNoteActivity extends AppCompatActivity{
                     viewNoteFragment, R.id.contentFrame);
         }
 
+        // get the position of the note from the list
+        int position = getIntent().getIntExtra("position", -1);
         // Create the Presenter
         ViewNotePresenter presenter = new ViewNotePresenter(viewNoteFragment);
+        presenter.setNotePosition(position);
         // Create the Model
         DataSource model = new DataSource();
         presenter.setModel(model);

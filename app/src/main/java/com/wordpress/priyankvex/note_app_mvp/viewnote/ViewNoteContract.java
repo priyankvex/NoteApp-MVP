@@ -1,6 +1,6 @@
 package com.wordpress.priyankvex.note_app_mvp.viewnote;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.wordpress.priyankvex.note_app_mvp.BasePresenter;
 import com.wordpress.priyankvex.note_app_mvp.BaseView;
@@ -15,13 +15,13 @@ public interface ViewNoteContract {
     interface View extends BaseView<Presenter>{
 
         void noteDeleted();
-        int getNoteId();
     }
 
     interface Presenter extends BasePresenter{
 
         void setModel(DataSourceContract model);
         void deleteNote();
-        void setNoteData(EditText title, EditText body);
+        void setNoteData(TextView title, TextView body);
+        void setNotePosition(int position);
     }
 }

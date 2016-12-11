@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".addnote.AddNoteActivity"
             android:parentActivityName=".listnotes.ListNotesActivity"/>
+        <activity android:name=".viewnote.ViewNoteActivity"
+            android:parentActivityName=".listnotes.ListNotesActivity"/>
 
         <meta-data android:name="DATABASE" android:value="notes_app.db" />
         <meta-data android:name="VERSION" android:value="3" />

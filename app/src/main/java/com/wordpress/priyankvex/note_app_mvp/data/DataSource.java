@@ -24,12 +24,15 @@ public class DataSource implements DataSourceContract{
 
     @Override
     public Note getNote(int position) {
+        loadData();
         return mNotes.get(position);
     }
 
     @Override
-    public boolean deleteNote(Note note) {
+    public boolean deleteNote(int position) {
+        Note note = mNotes.get(position);
         note.delete();
+        mNotes.remove(position);
         return true;
     }
 

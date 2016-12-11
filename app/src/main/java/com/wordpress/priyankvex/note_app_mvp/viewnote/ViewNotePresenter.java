@@ -1,8 +1,9 @@
 package com.wordpress.priyankvex.note_app_mvp.viewnote;
 
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.wordpress.priyankvex.note_app_mvp.data.DataSourceContract;
+import com.wordpress.priyankvex.note_app_mvp.data.Note;
 
 import java.lang.ref.WeakReference;
 
@@ -18,6 +19,8 @@ public class ViewNotePresenter implements ViewNoteContract.Presenter{
     private WeakReference<ViewNoteContract.View> mView;
     // reference to the model
     private DataSourceContract mModel;
+    // position of the note
+    private int position;
 
     ViewNotePresenter(ViewNoteContract.View view){
         this.mView = new WeakReference<>(view);
@@ -35,12 +38,20 @@ public class ViewNotePresenter implements ViewNoteContract.Presenter{
 
     @Override
     public void deleteNote() {
-
+        mModel.deleteNote(position);
+        mView.get().noteDeleted();
     }
 
     @Override
-    public void setNoteData(EditText title, EditText body) {
+    public void setNoteData(TextView title, TextView body) {
+        Note note = mModel.getNote(position);
+        title.setText(note.getTitle());
+        body.setText(note.getText());
+    }
 
+    @Override
+    public void setNotePosition(int position) {
+        this.position = position;
     }
 
 }

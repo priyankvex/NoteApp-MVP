@@ -37,6 +37,7 @@ public class ViewNoteFragment extends Fragment implements ViewNoteContract.View{
         View rootView = inflater.inflate(R.layout.view_note_fragment, container, false);
         setHasOptionsMenu(true);
         setUpViews(rootView);
+        mPresenter.setNoteData(titleTextView, bodyTextView);
         return rootView;
     }
 
@@ -64,11 +65,6 @@ public class ViewNoteFragment extends Fragment implements ViewNoteContract.View{
     @Override
     public void noteDeleted() {
         getActivity().finish();
-    }
-
-    @Override
-    public int getNoteId() {
-        return 0;
     }
 
     private void setUpViews(View rootView){

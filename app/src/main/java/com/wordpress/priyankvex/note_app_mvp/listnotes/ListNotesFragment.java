@@ -1,9 +1,9 @@
 package com.wordpress.priyankvex.note_app_mvp.listnotes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wordpress.priyankvex.note_app_mvp.R;
+import com.wordpress.priyankvex.note_app_mvp.viewnote.ViewNoteActivity;
 
 /**
  * Created by @priyankvex on 4/12/16.
@@ -22,6 +23,8 @@ public class ListNotesFragment extends Fragment implements ListNotesContract.Vie
 
     private ListNotesContract.Presenter mPresenter;
     private ListNotesAdapter mAdapter;
+
+    RecyclerView notesRecyclerView;
 
     public static ListNotesFragment newInstance() {
         return new ListNotesFragment();
@@ -40,7 +43,7 @@ public class ListNotesFragment extends Fragment implements ListNotesContract.Vie
     }
 
     private void setUpViews(View rootView){
-        RecyclerView notesRecyclerView = (RecyclerView) rootView.findViewById(R.id.notes_rv);
+        notesRecyclerView = (RecyclerView) rootView.findViewById(R.id.notes_rv);
         mAdapter = new ListNotesAdapter(mPresenter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivityContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -73,6 +76,14 @@ public class ListNotesFragment extends Fragment implements ListNotesContract.Vie
     @Override
     public void notifyItemRemoved(int position) {
         mAdapter.notifyItemRemoved(position);
+    }
+
+    @Override
+    public void onNoteClick(View view) {
+        int position = notesRecyclerView.getChildLayoutPosition(view);
+        Intent i = new Intent(getActivity(), ViewNoteActivity.class);
+        i.putExtra("position", position);
+        startActivity(i);
     }
 
     @Override

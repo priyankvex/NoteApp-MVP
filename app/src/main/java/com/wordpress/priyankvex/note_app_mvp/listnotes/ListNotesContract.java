@@ -19,6 +19,7 @@ public interface ListNotesContract {
         void notifyItemInserted(int position);
         void notifyDataSetChanged();
         void notifyItemRemoved(int position);
+        void onNoteClick(android.view.View view);
     }
 
     interface Presenter extends BasePresenter {

@@ -53,6 +53,12 @@ public class ListNotesPresenter implements ListNotesContract.Presenter{
         ListNotesAdapter.ViewHolder viewHolder;
         View itemRow = LayoutInflater.from(parent.getContext()).inflate(R.layout.notes_list_custom_item,
                 parent, false);
+        itemRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mListNotesView.get().onNoteClick(view);
+            }
+        });
         viewHolder = new ListNotesAdapter.ViewHolder(itemRow);
         return viewHolder;
     }

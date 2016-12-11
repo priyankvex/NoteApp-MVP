@@ -9,7 +9,7 @@ public interface DataSourceContract {
     void onDestroy(boolean isChangingConfiguration);
     boolean loadData();
     Note getNote(int position);
-    boolean deleteNote(Note note);
+    boolean deleteNote(int position);
     int getNotesCount();
     boolean saveNewNote(Note note);
 
