@@ -19,8 +19,12 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.scrollTo;
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkArgument;
+import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -74,6 +78,32 @@ public class ExampleInstrumentedTest {
         onView(withId(R.id.title_edit_text)).check(matches(isDisplayed()));
     }
 
+
+    @Test
+    public void addNoteToNotesList() throws Exception {
+        String newNoteTitle = "12345";
+        String newNoteDescription = "UI testing for Android";
+
+        // Click on the add note button
+        onView(withId(R.id.new_note_fab)).perform(click());
+
+        // Add note title and description
+        // Type new note title
+        onView(withId(R.id.title_edit_text)).perform(typeText(newNoteTitle), closeSoftKeyboard());
+        onView(withId(R.id.body_edit_text)).perform(typeText(newNoteDescription),
+                closeSoftKeyboard()); // Type new note description and close the keyboard
+
+        // Save the note
+        onView(withId(R.id.action_add_note))
+                .perform(click());
+
+        // Scroll notes list to added note, by finding its description
+        onView(withId(R.id.notes_rv)).perform(
+                scrollTo(hasDescendant(withText(newNoteTitle))));
+
+        // Verify note is displayed on screen
+        onView(withItemText(newNoteTitle)).check(matches(isDisplayed()));
+    }
 
 
 }
