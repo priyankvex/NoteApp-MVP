@@ -51,7 +51,7 @@ public class AddNoteFragment extends Fragment implements AddNoteContract.View{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_add_note){
-            mPresenter.saveNewNote(titleEditText, bodyEditText);
+            mPresenter.saveNewNote(titleEditText.getText().toString(), bodyEditText.getText().toString());
         }
         return super.onOptionsItemSelected(item);
     }
@@ -68,8 +68,8 @@ public class AddNoteFragment extends Fragment implements AddNoteContract.View{
     }
 
     @Override
-    public void showToast(Toast toast) {
-        toast.show();
+    public void showToast(String text) {
+        Toast.makeText(getActivityContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override

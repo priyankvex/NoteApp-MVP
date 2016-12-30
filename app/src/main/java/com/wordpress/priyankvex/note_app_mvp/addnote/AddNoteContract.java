@@ -16,7 +16,7 @@ public interface AddNoteContract {
 
     interface View extends BaseView<Presenter>{
 
-        void showToast(Toast toast);
+        void showToast(String message);
         Context getActivityContext();
         void finishView();
     }
@@ -24,7 +24,7 @@ public interface AddNoteContract {
     interface Presenter extends BasePresenter{
 
         void onNewNoteClick();
-        void saveNewNote(EditText title, EditText body);
+        void saveNewNote(String title, String body);
         void setModel(DataSourceContract model);
     }
 }
