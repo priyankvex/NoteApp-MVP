@@ -1,7 +1,5 @@
 package com.wordpress.priyankvex.note_app_mvp.addnote;
 
-import android.widget.EditText;
-
 import com.wordpress.priyankvex.note_app_mvp.data.DataSourceContract;
 import com.wordpress.priyankvex.note_app_mvp.data.Note;
 
@@ -10,7 +8,6 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 
@@ -36,11 +33,6 @@ public class AddNotePresenterTest {
     }
 
     @Test
-    public void onNewNoteClick() throws Exception {
-
-    }
-
-    @Test
     public void saveNewNote() throws Exception {
         mAddNotePresenter.saveNewNote("Title", "Body goes here");
         verify(mDataSource).saveNewNote(any(Note.class));
@@ -48,9 +40,5 @@ public class AddNotePresenterTest {
         verify(mAddNoteView).finishView();
     }
 
-    @Test
-    public void setModel() throws Exception {
-
-    }
 
 }
