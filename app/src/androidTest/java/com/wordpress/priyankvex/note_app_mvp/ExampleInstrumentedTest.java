@@ -22,6 +22,7 @@ import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.contrib.RecyclerViewActions.scrollTo;
 import static android.support.test.espresso.core.deps.guava.base.Preconditions.checkArgument;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
@@ -105,5 +106,21 @@ public class ExampleInstrumentedTest {
         onView(withItemText(newNoteTitle)).check(matches(isDisplayed()));
     }
 
+    @Test
+    public void deleteNote(){
+
+        String newNoteTitle = "12345";
+
+        // Scroll notes list to added note, by finding its description
+        onView(withId(R.id.notes_rv)).perform(
+                scrollTo(hasDescendant(withText(newNoteTitle))));
+
+        onView(withId(R.id.notes_rv)).perform(actionOnItemAtPosition(0, click()));
+
+        onView(withId(R.id.text_view_title)).check(matches(withText(newNoteTitle)));
+
+        onView(withId(R.id.action_delete_note)).perform(click());
+
+    }
 
 }
